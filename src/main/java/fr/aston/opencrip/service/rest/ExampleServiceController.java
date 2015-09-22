@@ -1,4 +1,4 @@
-package fr.aston.opencrip.service.remote;
+package fr.aston.opencrip.service.rest;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +25,10 @@ import fr.aston.opencrip.service.ex.TechnicalErrorException;
  */
 
 @RestController
+@RequestMapping(value = "/users")
 public class ExampleServiceController {
 
     @Autowired
-    @Qualifier("userService")
     private IUserService userService;
 
     /**
@@ -48,7 +47,7 @@ public class ExampleServiceController {
      *            le password
      * @return l'utilisateur authentifie
      */
-    @RequestMapping(value = "/users", method = RequestMethod.GET,
+    @RequestMapping(value = "/all", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<String> getUsers() {
         Set<IUserEntity> users = null;

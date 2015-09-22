@@ -1,7 +1,7 @@
 # .gitignore
 # eclipse
 .project
-.settings/
+
 # maven
 target
 # classpath

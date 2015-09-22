@@ -20,9 +20,8 @@ import fr.aston.opencrip.entity.IUserEntity;
 /**
  * Gestion des operations.
  */
-@Repository("utilisateurDAO")
-public class UserDAO extends AbstractDAO<IUserEntity>implements
-    IUserDAO {
+@Repository
+public class UserDAO extends AbstractDAO<IUserEntity>implements IUserDAO {
 
     private static final long serialVersionUID = 1L;
 
@@ -86,8 +85,7 @@ public class UserDAO extends AbstractDAO<IUserEntity>implements
     }
 
     @Override
-    public IUserEntity update(IUserEntity pUneEntite)
-        throws ExceptionDao {
+    public IUserEntity update(IUserEntity pUneEntite) throws ExceptionDao {
         if (pUneEntite == null) {
             return null;
         }
@@ -117,8 +115,8 @@ public class UserDAO extends AbstractDAO<IUserEntity>implements
 
     @Override
     public IUserEntity selectLogin(String pLogin) throws ExceptionDao {
-        Set<IUserEntity> allLogin = this.selectAll("login='" + pLogin
-            + "'", null);
+        Set<IUserEntity> allLogin = this.selectAll("login='" + pLogin + "'",
+            null);
         if ((allLogin == null) || allLogin.isEmpty()) {
             return null;
         }

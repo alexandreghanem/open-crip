@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 /**
  * Classe parente de tous les services.
  */
-@Service("abstractService")
+@Service
 abstract class AbstractService implements IService {
 
     protected Log LOG = LogFactory.getLog(this.getClass());

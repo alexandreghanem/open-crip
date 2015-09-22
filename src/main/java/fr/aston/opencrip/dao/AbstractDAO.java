@@ -24,7 +24,7 @@ import fr.aston.opencrip.entity.IEntity;
  * @param <T>
  *            la cible du DAO
  */
-@Repository("abstractDAO")
+@Repository
 public abstract class AbstractDAO<T extends IEntity> implements Serializable,
     IDAO<T> {
 

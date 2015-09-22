@@ -3,7 +3,6 @@ package fr.aston.opencrip.service;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import fr.aston.opencrip.dao.IUserDAO;
@@ -14,9 +13,9 @@ import fr.aston.opencrip.service.ex.TechnicalErrorException;
 /**
  * Gestion de l'utilisateur.
  */
-@Service("userService")
+@Service
 public class UserService extends AbstractService implements IUserService {
-
+    @Autowired
     private IUserDAO userDAO;
 
     /**
@@ -41,8 +40,7 @@ public class UserService extends AbstractService implements IUserService {
      * @param pUtilisateurDAO
      *            la nouvelle valeur pour la propriete userDAO.
      */
-    @Autowired
-    public void setUserDAO(@Qualifier("userDAO") IUserDAO pUserDao) {
+    public void setUserDAO(IUserDAO pUserDao) {
         this.userDAO = pUserDao;
     }
 
