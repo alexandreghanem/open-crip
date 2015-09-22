@@ -37,6 +37,6 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/views/home.html</welcome-file>
+        <welcome-file>/app/index.html</welcome-file>
     </welcome-file-list>
 </web-app>
