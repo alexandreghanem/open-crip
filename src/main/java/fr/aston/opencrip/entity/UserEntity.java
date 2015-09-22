@@ -1,5 +1,6 @@
 package fr.aston.opencrip.entity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -9,34 +10,21 @@ public class UserEntity extends AbstractEntity implements IUserEntity {
 
     private static final long serialVersionUID = 1L;
 
-    /** Sex masculin. */
-    public final static Byte SEX_M = new Byte((byte) 0);
-    /** Sex feminin. */
-    public final static Byte SEX_F = new Byte((byte) 1);
-
     private String login;
     private String password;
-
-    private String nom;
-    private String prenom;
-    private Byte sex;
-    private Timestamp derniereConnection;
+    private String email;
+    private String telephone;
+    private Timestamp lastConnection;
+    private Date registrationDate;
+    private Integer addressId;
+    private Integer clientId;
+    private Integer supplierId;
 
     /**
      * Constructeur de l'objet. <br>
      */
     public UserEntity() {
         super();
-    }
-
-    @Override
-    public Byte getSex() {
-        return this.sex;
-    }
-
-    @Override
-    public void setSex(Byte pSex) {
-        this.sex = pSex;
     }
 
     @Override
@@ -60,33 +48,73 @@ public class UserEntity extends AbstractEntity implements IUserEntity {
     }
 
     @Override
-    public String getNom() {
-        return this.nom;
+    public String getEmail() {
+        return this.email;
     }
 
     @Override
-    public void setNom(String pNom) {
-        this.nom = pNom;
+    public void setEmail(String pEmail) {
+        this.email = pEmail;
     }
 
     @Override
-    public String getPrenom() {
-        return this.prenom;
+    public String getTelephone() {
+        return this.telephone;
     }
 
     @Override
-    public void setPrenom(String pPrenom) {
-        this.prenom = pPrenom;
+    public void setTelephone(String pTelephone) {
+        this.telephone = pTelephone;
     }
 
     @Override
-    public Timestamp getDerniereConnection() {
-        return this.derniereConnection;
+    public Timestamp getLastConnection() {
+        return this.lastConnection;
     }
 
     @Override
-    public void setDerniereConnection(Timestamp pDerniereConnection) {
-        this.derniereConnection = pDerniereConnection;
+    public void setLastConnection(Timestamp pLastConnection) {
+        this.lastConnection = pLastConnection;
+    }
+
+    @Override
+    public Date getRegistrationDate() {
+        return this.registrationDate;
+    }
+
+    @Override
+    public void setRegistrationDate(Date pRegistrationDate) {
+        this.registrationDate = pRegistrationDate;
+    }
+
+    @Override
+    public Integer getAddressId() {
+        return this.addressId;
+    }
+
+    @Override
+    public void setAddressId(Integer pAddressId) {
+        this.addressId = pAddressId;
+    }
+
+    @Override
+    public Integer getClientId() {
+        return this.clientId;
+    }
+
+    @Override
+    public void setClientId(Integer pClientId) {
+        this.clientId = pClientId;
+    }
+
+    @Override
+    public Integer getSupplierId() {
+        return this.supplierId;
+    }
+
+    @Override
+    public void setSupplierId(Integer pSupplierId) {
+        this.supplierId = pSupplierId;
     }
 
     @Override
@@ -95,12 +123,6 @@ public class UserEntity extends AbstractEntity implements IUserEntity {
         String parent = super.toString();
         parent = parent.substring(0, parent.length() - 1);
         sb.append(parent);
-        sb.append(",sex=");
-        sb.append(this.getSex());
-        sb.append(",nom=");
-        sb.append(this.getNom());
-        sb.append(",prenom=");
-        sb.append(this.getPrenom());
         sb.append(",login=");
         sb.append(this.getLogin());
         sb.append("}");

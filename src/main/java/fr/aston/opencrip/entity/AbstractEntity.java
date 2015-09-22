@@ -21,12 +21,12 @@ public abstract class AbstractEntity implements Serializable, IEntity {
     /**
      * Constructeur de l'objet. <br>
      *
-     * @param unId
+     * @param pId
      *            l'id d'un compte
      */
-    public AbstractEntity(Integer unId) {
+    public AbstractEntity(Integer pId) {
         super();
-        this.setId(unId);
+        this.setId(pId);
     }
 
     @Override
@@ -35,8 +35,8 @@ public abstract class AbstractEntity implements Serializable, IEntity {
     }
 
     @Override
-    public final void setId(Integer unId) {
-        this.id = unId;
+    public final void setId(Integer pId) {
+        this.id = pId;
     }
 
     @Override

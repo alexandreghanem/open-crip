@@ -63,14 +63,11 @@ public class UserDAO extends AbstractDAO<IUserEntity>implements IUserDAO {
                     Connection connexion) throws SQLException {
                     PreparedStatement ps = connexion.prepareStatement(
                         "insert into " + UserDAO.this.getTableName()
-                            + " (nom,prenom,login,password,sex,derniereConnection) values (?,?,?,?,?,?);",
+                            + " (login,password,date_derniere_connection) values (?,?,?);",
                         Statement.RETURN_GENERATED_KEYS);
-                    ps.setString(1, pUneEntite.getNom());
-                    ps.setString(2, pUneEntite.getPrenom());
                     ps.setString(3, pUneEntite.getLogin());
                     ps.setString(4, pUneEntite.getPassword());
-                    ps.setByte(5, pUneEntite.getSex().byteValue());
-                    ps.setTimestamp(6, pUneEntite.getDerniereConnection());
+                    ps.setTimestamp(6, pUneEntite.getLastConnection());
                     return ps;
                 }
             };
@@ -95,17 +92,16 @@ public class UserDAO extends AbstractDAO<IUserEntity>implements IUserDAO {
 
         try {
             String sql = "update " + this.getTableName()
-                + " set nom=?,prenom=?,login=?,password=?,sex=?,derniereConnection=? where "
+                + " set nom=?,prenom=?,login=?,password=?,sex=?,date_derniere_connection=? where "
                 + this.getPkName() + "=?;";
 
             if (this.LOG.isDebugEnabled()) {
                 this.LOG.debug("Requete: " + sql);
             }
 
-            this.getJdbcTemplate().update(sql, pUneEntite.getNom(), pUneEntite
-                .getPrenom(), pUneEntite.getLogin(), pUneEntite.getPassword(),
-                pUneEntite.getSex().byteValue(), pUneEntite
-                    .getDerniereConnection(), pUneEntite.getId().intValue());
+            this.getJdbcTemplate().update(sql, pUneEntite.getLogin(), pUneEntite
+                .getPassword(), pUneEntite.getLastConnection(), pUneEntite
+                    .getId().intValue());
         } catch (DataAccessException e) {
             throw new ExceptionDao(e);
         }

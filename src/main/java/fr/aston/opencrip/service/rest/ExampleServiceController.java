@@ -65,8 +65,6 @@ public class ExampleServiceController {
                 }
                 JSONObject obj = new JSONObject();
                 obj.put("login", user.getLogin());
-                obj.put("nom", user.getNom());
-                obj.put("prenom", user.getPrenom());
                 obj.put("id", user.getId());
                 array.put(obj);
             }

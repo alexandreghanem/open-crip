@@ -4,17 +4,17 @@ public interface IEntity {
 
     /**
      * Recupere l'id du compte.
-     * 
+     *
      * @return l'id du compte.
      */
     public abstract Integer getId();
 
     /**
      * Fixe l'id du compte.
-     * 
-     * @param unId
+     *
+     * @param pId
      *            l'id du compte.
      */
-    public abstract void setId(Integer unId);
+    public abstract void setId(Integer pId);
 
 }

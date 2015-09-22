@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import fr.aston.opencrip.entity.IUserEntity;
 import fr.aston.opencrip.entity.UserEntity;
 
-public class UserJdbcMapper extends
-    AbstractJdbcMapper<IUserEntity> {
+public class UserJdbcMapper extends AbstractJdbcMapper<IUserEntity> {
 
     public UserJdbcMapper() {
         super();
@@ -17,12 +16,9 @@ public class UserJdbcMapper extends
     public IUserEntity mapRow(ResultSet rs, int id) throws SQLException {
         IUserEntity result = new UserEntity();
         result.setId(Integer.valueOf(rs.getInt("id")));
-        result.setNom(rs.getString("nom"));
-        result.setPrenom(rs.getString("prenom"));
-        result.setLogin(rs.getString("login"));
-        result.setPassword(rs.getString("password"));
-        result.setSex(Byte.valueOf(rs.getByte("sex")));
-        result.setDerniereConnection(rs.getTimestamp("derniereConnection"));
+        result.setLogin(rs.getString("identifiant"));
+        result.setPassword(rs.getString("mot_de_passe"));
+        result.setLastConnection(rs.getTimestamp("date_derniere_connection"));
         return result;
     }
 
