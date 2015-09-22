@@ -3,28 +3,19 @@ package fr.aston.opencrip.service;
 import java.util.Set;
 
 import fr.aston.opencrip.entity.IUserEntity;
-import fr.aston.opencrip.service.ex.AuthentificationException;
 import fr.aston.opencrip.service.ex.TechnicalErrorException;
 
 /**
- * Gestion de l'authentification.
+ * Gestion de l'utilisateur.
  */
 public interface IUserService extends IService {
 
     /**
-     * Authentifie un utilisateur.
+     * Récupère tous les utilisateur.
      *
-     * @param pLogin
-     *            le login
-     * @param pPassword
-     *            le password
-     * @return l'utilisateur authentifie, leve une exception sinon
-     * @throws AuthentificationException
-     *             si un probleme survient
+     * @return liste d'utilisateurs, leve une exception sinon
      * @throws TechnicalErrorException
      *             si un probleme survient
-     * @throws NullPointerException
-     *             avec comme message le nom du parametre null
      */
     public abstract Set<IUserEntity> getUsers() throws TechnicalErrorException;
 

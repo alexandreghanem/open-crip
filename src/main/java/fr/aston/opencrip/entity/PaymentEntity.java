@@ -3,7 +3,7 @@ package fr.aston.opencrip.entity;
 import java.sql.Date;
 
 /**
- * Le bean qui represente un fournisseur. <br>
+ * Le bean qui represente un paiement. <br>
  */
 public class PaymentEntity extends AbstractEntity implements IPaymentEntity {
 

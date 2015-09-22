@@ -20,8 +20,8 @@ import fr.aston.opencrip.service.IUserService;
 import fr.aston.opencrip.service.ex.TechnicalErrorException;
 
 /**
- * Gestion de l'authentification en rest. URL :
- * http://localhost:8080/netbank/rest/authentication/dj/dj
+ * Récuperation des utilisateurs en rest. URL :
+ * http://localhost:8080/open-crip/rest/users
  */
 
 @RestController

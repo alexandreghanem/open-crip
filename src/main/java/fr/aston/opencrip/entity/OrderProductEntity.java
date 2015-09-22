@@ -1,7 +1,7 @@
 package fr.aston.opencrip.entity;
 
 /**
- * Le bean qui represente un fournisseur. <br>
+ * Le bean qui represente une CommandeProduit. <br>
  */
 public class OrderProductEntity extends AbstractEntity implements
     IOrderProductEntity {

@@ -39,7 +39,7 @@ public interface IDAO<T extends IEntity> {
      * @throws ExceptionDao
      *             si une erreur survient
      */
-    public abstract T insert(T uneEntite) throws ExceptionDao;
+    public abstract T insert(T pEntity) throws ExceptionDao;
 
     /**
      * Met a jour un element.
@@ -52,7 +52,7 @@ public interface IDAO<T extends IEntity> {
      * @throws ExceptionDao
      *             si une erreur survient
      */
-    public abstract T update(T uneEntite) throws ExceptionDao;
+    public abstract T update(T pEntity) throws ExceptionDao;
 
     /**
      * Supprime un element.
@@ -65,7 +65,7 @@ public interface IDAO<T extends IEntity> {
      * @throws ExceptionDao
      *             si une erreur survient
      */
-    public abstract boolean delete(T pUneEntite) throws ExceptionDao;
+    public abstract boolean delete(T pEntity) throws ExceptionDao;
 
     /**
      * Selectionne l'element ayant comme valeur de clef primaire le parametre.
@@ -79,7 +79,7 @@ public interface IDAO<T extends IEntity> {
      * @throws ExceptionDao
      *             si une erreur survient
      */
-    public abstract T select(Object pUneClef) throws ExceptionDao;
+    public abstract T select(Object pKey) throws ExceptionDao;
 
     /**
      * Selectionne tous les elements qui correspondent aux criteres.

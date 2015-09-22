@@ -3,7 +3,7 @@ package fr.aston.opencrip.entity;
 import java.sql.Date;
 
 /**
- * Le bean qui represente un fournisseur. <br>
+ * Le bean qui represente une commande. <br>
  */
 public class OrderEntity extends AbstractEntity implements IOrderEntity {
 

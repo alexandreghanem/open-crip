@@ -71,17 +71,17 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
     public abstract String getAllColumnNames();
 
     @Override
-    public abstract T insert(T uneEntite) throws ExceptionDao;
+    public abstract T insert(T pEntity) throws ExceptionDao;
 
     @Override
-    public abstract T update(T uneEntite) throws ExceptionDao;
+    public abstract T update(T pEntity) throws ExceptionDao;
 
     @Override
-    public boolean delete(T pUneEntite) throws ExceptionDao {
-        if (pUneEntite == null) {
+    public boolean delete(T pEntity) throws ExceptionDao {
+        if (pEntity == null) {
             return false;
         }
-        if (pUneEntite.getId() == null) {
+        if (pEntity.getId() == null) {
             throw new ExceptionDao("L'entite n'a pas d'ID");
         }
 
@@ -93,15 +93,15 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
                 this.LOG.debug("Requete: " + sql);
             }
 
-            return this.getJdbcTemplate().update(sql, pUneEntite.getId()) > 0;
+            return this.getJdbcTemplate().update(sql, pEntity.getId()) > 0;
         } catch (DataAccessException e) {
             throw new ExceptionDao(e);
         }
     }
 
     @Override
-    public T select(Object pUneClef) throws ExceptionDao {
-        if (pUneClef == null) {
+    public T select(Object pKey) throws ExceptionDao {
+        if (pKey == null) {
             return null;
         }
 
@@ -115,14 +115,14 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
                 this.LOG.debug("Requete: " + sql);
             }
 
-            if (pUneClef instanceof Number) {
+            if (pKey instanceof Number) {
                 result = this.getJdbcTemplate().queryForObject(sql,
-                    (RowMapper<T>) this.getMapper(), ((Number) pUneClef)
+                    (RowMapper<T>) this.getMapper(), ((Number) pKey)
                         .intValue());
 
             } else {
                 result = this.getJdbcTemplate().queryForObject(sql,
-                    (RowMapper<T>) this.getMapper(), Integer.valueOf(pUneClef
+                    (RowMapper<T>) this.getMapper(), Integer.valueOf(pKey
                         .toString()).intValue());
             }
         } catch (DataAccessException e) {

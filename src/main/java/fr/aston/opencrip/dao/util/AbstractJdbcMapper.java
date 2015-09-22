@@ -9,9 +9,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * Le mapper qui represente une entité. <br>
+ */
 public abstract class AbstractJdbcMapper<T> implements RowMapper<T>,
     ResultSetExtractor<Set<T>> {
 
+    /**
+     * Constructeur de l'objet. <br>
+     */
     public AbstractJdbcMapper() {
         super();
     }
