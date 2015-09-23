@@ -10,12 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping(value = "/accueil")
-public class HomeController extends AbstractController {
+public class ViewController extends AbstractController {
 
     /**
      * Constructeur de l'objet.
      */
-    public HomeController() {
+    public ViewController() {
         super();
     }
 
