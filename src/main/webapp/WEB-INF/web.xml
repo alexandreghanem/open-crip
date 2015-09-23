@@ -35,10 +35,11 @@
     </listener>
     
     <!-- Ce filtre permet au Spring de gerer les web services Rest en PUT -->
-    <!-- <filter>
+    <filter>
         <filter-name>HttpPutFormContentFilter</filter-name>
         <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
-    </filter> -->
+    </filter>
+    
     <servlet>
         <servlet-name>RestDispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

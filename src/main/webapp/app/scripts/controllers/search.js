@@ -8,7 +8,7 @@
  * Controller of the projectsApp
  */
 angular.module('projectsApp')
-  .controller('LoginCtrl', function () {
+  .controller('SearchCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
