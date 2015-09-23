@@ -32,6 +32,6 @@ angular
         controllerAs: 'login'
       })
       .otherwise({
-        redirectTo: '/'
+        //redirectTo: '/'
       });
   });
