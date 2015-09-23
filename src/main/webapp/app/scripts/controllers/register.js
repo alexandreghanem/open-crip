@@ -7,6 +7,7 @@
  * # AboutCtrl
  * Controller of the projectsApp
  */
+
 app
   .controller('RegisterCtrl', function ($scope, registerService, $location) {
 	  $scope.save = function (form, bean) {
