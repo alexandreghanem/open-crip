@@ -1,7 +1,12 @@
 package fr.aston.opencrip.dao;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -10,8 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import fr.aston.opencrip.dao.ex.ExceptionDao;
@@ -68,13 +76,78 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
     public abstract String getPkName();
 
     @Override
-    public abstract String getAllColumnNames();
+    public abstract String[] getAllColumnNames();
 
     @Override
-    public abstract T insert(T pEntity) throws ExceptionDao;
+    public abstract String[] getInsertParams();
 
     @Override
-    public abstract T update(T pEntity) throws ExceptionDao;
+    public abstract List<Object> getUpdateParams(T pEntity);
+
+    @Override
+    public abstract int[] getUpdateTypes();
+
+    @Override
+    public T insert(final T pEntity) throws ExceptionDao {
+        if (pEntity == null) {
+            return null;
+        }
+
+        try {
+            PreparedStatementCreator psc = new PreparedStatementCreator() {
+                @Override
+                public PreparedStatement createPreparedStatement(
+                    Connection connexion) throws SQLException {
+                    String sql = "insert into " + AbstractDAO.this
+                        .getTableName() + " (" + String.join(",",
+                            AbstractDAO.this.getAllColumnNames()) + ") values("
+                        + String.join(",", AbstractDAO.this.getInsertParams())
+                        + ")" + ";";
+                    if (AbstractDAO.this.LOG.isDebugEnabled()) {
+                        AbstractDAO.this.LOG.debug("Requete: " + sql);
+                    }
+                    PreparedStatement ps = connexion.prepareStatement(sql,
+                        Statement.RETURN_GENERATED_KEYS);
+                    AbstractDAO.this.getMapper().revertMapRow(ps, pEntity);
+                    return ps;
+                }
+            };
+            KeyHolder kh = new GeneratedKeyHolder();
+            this.getJdbcTemplate().update(psc, kh);
+            pEntity.setId(Integer.valueOf(kh.getKey().intValue()));
+        } catch (Throwable e) {
+            throw new ExceptionDao(e);
+        }
+
+        return pEntity;
+    }
+
+    @Override
+    public T update(T pEntity) throws ExceptionDao {
+        if (pEntity == null) {
+            return null;
+        }
+        if (pEntity.getId() == null) {
+            throw new ExceptionDao("L'entite n'a pas d'ID");
+        }
+
+        try {
+            String sql = "update " + this.getTableName() + " set " + String
+                .join("=?,", this.getAllColumnNames()) + "=?" + " where " + this
+                    .getPkName() + "=?;";
+
+            if (this.LOG.isDebugEnabled()) {
+                this.LOG.debug("Requete: " + sql);
+            }
+
+            this.getJdbcTemplate().update(sql, this.getUpdateParams(pEntity)
+                .toArray(), this.getUpdateTypes());
+        } catch (DataAccessException e) {
+            throw new ExceptionDao(e);
+        }
+
+        return pEntity;
+    }
 
     @Override
     public boolean delete(T pEntity) throws ExceptionDao {
@@ -108,8 +181,9 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
         T result = null;
 
         try {
-            String sql = "select " + this.getAllColumnNames() + " from " + this
-                .getTableName() + " where " + this.getPkName() + "=?;";
+            String sql = "select " + this.getPkName() + "," + String.join(",",
+                this.getAllColumnNames()) + " from " + this.getTableName()
+                + " where " + this.getPkName() + "=?;";
 
             if (this.LOG.isDebugEnabled()) {
                 this.LOG.debug("Requete: " + sql);
@@ -141,7 +215,8 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
         try {
             StringBuffer sql = new StringBuffer();
             sql.append("select ");
-            sql.append(this.getAllColumnNames());
+            sql.append(this.getPkName() + ",");
+            sql.append(String.join(",", this.getAllColumnNames()));
             sql.append(" from ");
             sql.append(this.getTableName());
             if (pAWhere != null) {

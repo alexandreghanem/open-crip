@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -37,4 +38,7 @@ public abstract class AbstractJdbcMapper<T> implements RowMapper<T>,
 
     @Override
     public abstract T mapRow(ResultSet rs, int id) throws SQLException;
+
+    public abstract void revertMapRow(PreparedStatement ps, T pEntity)
+        throws SQLException;
 }

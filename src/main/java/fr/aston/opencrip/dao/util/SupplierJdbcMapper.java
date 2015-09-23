@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -25,5 +26,13 @@ public class SupplierJdbcMapper extends AbstractJdbcMapper<ISupplierEntity> {
         result.setCompanyName(rs.getString("nom_enseigne"));
         result.setTurnover(rs.getString("chiffre_affaire"));
         return result;
+    }
+
+    @Override
+    public void revertMapRow(PreparedStatement ps, ISupplierEntity pEntity)
+        throws SQLException {
+        ps.setString(1, pEntity.getCompanyName());
+        ps.setString(2, pEntity.getTurnover());
+
     }
 }

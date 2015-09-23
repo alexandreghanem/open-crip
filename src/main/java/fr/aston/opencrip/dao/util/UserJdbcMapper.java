@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,5 +33,19 @@ public class UserJdbcMapper extends AbstractJdbcMapper<IUserEntity> {
         result.setClientId(Integer.valueOf(rs.getInt("id_client")));
         result.setSupplierId(Integer.valueOf(rs.getInt("id_fournisseur")));
         return result;
+    }
+
+    @Override
+    public void revertMapRow(PreparedStatement ps, IUserEntity pEntity)
+        throws SQLException {
+        ps.setString(1, pEntity.getLogin());
+        ps.setString(2, pEntity.getPassword());
+        ps.setTimestamp(3, pEntity.getLastConnection());
+        ps.setString(4, pEntity.getEmail());
+        ps.setString(5, pEntity.getTelephone());
+        ps.setDate(6, pEntity.getRegistrationDate());
+        ps.setInt(7, pEntity.getAddressId().intValue());
+        ps.setInt(8, pEntity.getClientId().intValue());
+        ps.setInt(9, pEntity.getSupplierId().intValue());
     }
 }

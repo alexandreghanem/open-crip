@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -26,5 +27,13 @@ public class ProductJdbcMapper extends AbstractJdbcMapper<IProductEntity> {
         result.setPrice(Double.valueOf(rs.getDouble("prix_total")));
         result.setSupplierId(Integer.valueOf(rs.getInt("id_fournisseur")));
         return result;
+    }
+
+    @Override
+    public void revertMapRow(PreparedStatement ps, IProductEntity pEntity)
+        throws SQLException {
+        ps.setString(1, pEntity.getReference());
+        ps.setDouble(2, pEntity.getPrice().doubleValue());
+        ps.setInt(9, pEntity.getSupplierId().intValue());
     }
 }
