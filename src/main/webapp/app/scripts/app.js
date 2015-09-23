@@ -12,7 +12,8 @@ angular
   .module('projectsApp', [
     'ngCookies',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'angularLoad'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -40,6 +41,11 @@ angular
         templateUrl: 'app/views/basket.html',
         controller: 'BasketCtrl',
         controllerAs: 'basket'
+      })
+      .when('/searchmap', {
+        templateUrl: 'app/views/search_map.html',
+        controller: 'SearchMapCtrl',
+        controllerAs: 'searchmap'
       })
       .otherwise({
         redirectTo: '/'

@@ -36,6 +36,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/search">Rechercher</a></li>
+              <li><a ng-href="#/searchmap">Rechercher sur la carte</a></li>
               <li><a ng-href="#/register">Inscription</a></li>
               <li><a ng-href="#/login">Se connecter</a></li>
               <li><a ng-href="#/basket">Mon panier</a></li>
@@ -46,7 +47,7 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+    	<div ng-view=""></div>
     </div>
 
     <div class="footer">
@@ -69,11 +70,12 @@
 
     <!-- build:js(.) app/lib/vendor/vendor.js -->
     <script src="app/lib/jquery/dist/jquery.js"></script>
-    <script src="app/lib/angular/angular.js"></script>
     <script src="app/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="app/lib/angular/angular.js"></script>
     <script src="app/lib/angular/angular-cookies.js"></script>
     <script src="app/lib/angular/angular-route.js"></script>
     <script src="app/lib/angular/angular-sanitize.js"></script>
+    <script src="app/lib/angular-load/angular-load.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) app/scripts/scripts.js -->
@@ -83,6 +85,8 @@
     <script src="app/scripts/controllers/login.js"></script>
     <script src="app/scripts/controllers/search.js"></script>
     <script src="app/scripts/controllers/basket.js"></script>
+    <script src="app/scripts/controllers/search_map.js"></script>
+
     <!-- endbuild -->
 </body>
 </html>
