@@ -181,8 +181,9 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
         T result = null;
 
         try {
-            String sql = "select " + this.getAllColumnNames() + " from " + this
-                .getTableName() + " where " + this.getPkName() + "=?;";
+            String sql = "select " + this.getPkName() + "," + String.join(",",
+                this.getAllColumnNames()) + " from " + this.getTableName()
+                + " where " + this.getPkName() + "=?;";
 
             if (this.LOG.isDebugEnabled()) {
                 this.LOG.debug("Requete: " + sql);
@@ -214,7 +215,8 @@ public abstract class AbstractDAO<T extends IEntity> implements Serializable,
         try {
             StringBuffer sql = new StringBuffer();
             sql.append("select ");
-            sql.append(this.getAllColumnNames());
+            sql.append(this.getPkName() + ",");
+            sql.append(String.join(",", this.getAllColumnNames()));
             sql.append(" from ");
             sql.append(this.getTableName());
             if (pAWhere != null) {
