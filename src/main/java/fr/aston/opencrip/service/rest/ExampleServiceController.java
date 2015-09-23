@@ -47,7 +47,7 @@ public class ExampleServiceController {
      *            le password
      * @return l'utilisateur authentifie
      */
-    @RequestMapping(value = "/all", method = RequestMethod.GET,
+    @RequestMapping(value = "/all", method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<String> getUsers() {
         Set<IUserEntity> users = null;
