@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -40,8 +43,27 @@ public class PaymentDAO extends AbstractDAO<IPaymentEntity>implements
     }
 
     @Override
-    public String getAllColumnNames() {
-        return "id, date_paiement, mode_paiement";
+    public String[] getAllColumnNames() {
+        return new String[] { "date_paiement", "mode_paiement" };
+    }
+
+    @Override
+    public String[] getInsertParams() {
+        return new String[] { "?", "?" };
+    }
+
+    @Override
+    public List<Object> getUpdateParams(IPaymentEntity pEntity) {
+        List<Object> list = new ArrayList<Object>(3);
+        list.add(pEntity.getPaymentDate());
+        list.add(pEntity.getPaymentMode());
+        list.add(pEntity.getId().intValue());
+        return list;
+    }
+
+    @Override
+    public int[] getUpdateTypes() {
+        return new int[] { Types.DATE, Types.VARCHAR, Types.SMALLINT };
     }
 
     @Override

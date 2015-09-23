@@ -1,17 +1,11 @@
 package fr.aston.opencrip.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import fr.aston.opencrip.dao.ex.ExceptionDao;
 import fr.aston.opencrip.dao.util.AbstractJdbcMapper;
 import fr.aston.opencrip.dao.util.ClientJdbcMapper;
 import fr.aston.opencrip.entity.IClientEntity;
@@ -39,69 +33,31 @@ public class ClientDAO extends AbstractDAO<IClientEntity>implements IClientDAO {
     }
 
     @Override
-    public String getAllColumnNames() {
-        return "id, nom, prenom";
+    public String[] getAllColumnNames() {
+        return new String[] { "nom", "prenom" };
+    }
+
+    @Override
+    public String[] getInsertParams() {
+        return new String[] { "?", "?" };
+    }
+
+    @Override
+    public List<Object> getUpdateParams(IClientEntity pEntity) {
+        List<Object> list = new ArrayList<Object>(3);
+        list.add(pEntity.getLastname());
+        list.add(pEntity.getFirstname());
+        list.add(pEntity.getId().intValue());
+        return list;
+    }
+
+    @Override
+    public int[] getUpdateTypes() {
+        return new int[] { Types.VARCHAR, Types.VARCHAR, Types.SMALLINT };
     }
 
     @Override
     protected AbstractJdbcMapper<IClientEntity> getMapper() {
         return new ClientJdbcMapper();
-    }
-
-    @Override
-    public IClientEntity insert(final IClientEntity pEntity)
-        throws ExceptionDao {
-        if (pEntity == null) {
-            return null;
-        }
-
-        try {
-            PreparedStatementCreator psc = new PreparedStatementCreator() {
-                @Override
-                public PreparedStatement createPreparedStatement(
-                    Connection connexion) throws SQLException {
-                    PreparedStatement ps = connexion.prepareStatement(
-                        "insert into " + ClientDAO.this.getTableName()
-                            + " (nom, prenom) " + " values (?,?);",
-                        Statement.RETURN_GENERATED_KEYS);
-                    ps.setString(1, pEntity.getLastname());
-                    ps.setString(2, pEntity.getFirstname());
-                    return ps;
-                }
-            };
-            KeyHolder kh = new GeneratedKeyHolder();
-            this.getJdbcTemplate().update(psc, kh);
-            pEntity.setId(Integer.valueOf(kh.getKey().intValue()));
-        } catch (Throwable e) {
-            throw new ExceptionDao(e);
-        }
-
-        return pEntity;
-    }
-
-    @Override
-    public IClientEntity update(IClientEntity pEntity) throws ExceptionDao {
-        if (pEntity == null) {
-            return null;
-        }
-        if (pEntity.getId() == null) {
-            throw new ExceptionDao("L'entite n'a pas d'ID");
-        }
-
-        try {
-            String sql = "update " + this.getTableName()
-                + " set nom=?,prenom=? where " + this.getPkName() + "=?;";
-
-            if (this.LOG.isDebugEnabled()) {
-                this.LOG.debug("Requete: " + sql);
-            }
-
-            this.getJdbcTemplate().update(sql, pEntity.getLastname(), pEntity
-                .getFirstname(), pEntity.getId().intValue());
-        } catch (DataAccessException e) {
-            throw new ExceptionDao(e);
-        }
-
-        return pEntity;
     }
 }

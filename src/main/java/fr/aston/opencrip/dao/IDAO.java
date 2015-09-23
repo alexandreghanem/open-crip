@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao;
 
+import java.util.List;
 import java.util.Set;
 
 import fr.aston.opencrip.dao.ex.ExceptionDao;
@@ -26,7 +27,13 @@ public interface IDAO<T extends IEntity> {
      *
      * @return la liste de toutes les colonnes.
      */
-    public abstract String getAllColumnNames();
+    public abstract String[] getAllColumnNames();
+
+    public abstract String[] getInsertParams();
+
+    public abstract List<Object> getUpdateParams(T pUneEntite);
+
+    public abstract int[] getUpdateTypes();
 
     /**
      * Insert un element.

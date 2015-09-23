@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -25,5 +26,12 @@ public class ClientJdbcMapper extends AbstractJdbcMapper<IClientEntity> {
         result.setLastname(rs.getString("nom"));
         result.setFirstname(rs.getString("prenom"));
         return result;
+    }
+
+    @Override
+    public void revertMapRow(PreparedStatement ps, IClientEntity pEntity)
+        throws SQLException {
+        ps.setString(1, pEntity.getLastname());
+        ps.setString(2, pEntity.getFirstname());
     }
 }

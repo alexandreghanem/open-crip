@@ -1,5 +1,6 @@
 package fr.aston.opencrip.dao.util;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,5 +32,18 @@ public class AddressJdbcMapper extends AbstractJdbcMapper<IAddressEntity> {
         result.setLatitude(Double.valueOf(rs.getDouble("latitude")));
         result.setLongitude(Double.valueOf(rs.getDouble("longitude")));
         return result;
+    }
+
+    @Override
+    public void revertMapRow(PreparedStatement ps, IAddressEntity pEntity)
+        throws SQLException {
+        ps.setString(1, pEntity.getNumber());
+        ps.setString(2, pEntity.getAddress1());
+        ps.setString(3, pEntity.getAddress2());
+        ps.setString(4, pEntity.getZipCode());
+        ps.setString(5, pEntity.getCity());
+        ps.setString(6, pEntity.getCountry());
+        ps.setDouble(7, pEntity.getLongitude().doubleValue());
+        ps.setDouble(8, pEntity.getLatitude().doubleValue());
     }
 }
