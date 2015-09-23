@@ -21,10 +21,15 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'app/views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/register', {
+        templateUrl: 'app/views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
+      .when('/login', {
+        templateUrl: 'app/views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       })
       .when('/login', {
         templateUrl: 'app/views/login.html',
@@ -32,6 +37,6 @@ angular
         controllerAs: 'login'
       })
       .otherwise({
-        //redirectTo: '/'
+        redirectTo: '/'
       });
   });
