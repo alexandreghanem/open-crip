@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import fr.aston.opencrip.dao.IClientDAO;
 import fr.aston.opencrip.dao.ex.ExceptionDao;
+import fr.aston.opencrip.entity.ClientEntity;
 import fr.aston.opencrip.entity.IClientEntity;
 import fr.aston.opencrip.service.ex.TechnicalErrorException;
+import fr.aston.opencrip.web.bean.RegisterBean;
 
 /**
  * Gestion du client.
@@ -56,10 +58,22 @@ public class ClientService extends AbstractService implements IClientService {
 	}
 
 	@Override
-	public Set<IClientEntity> register(String pNom, String pPrenom, String pLogin, String pPassword, String pEmail,
-			String pTelephone) throws TechnicalErrorException {
-		Set<IClientEntity> client = null;
+	public IClientEntity register(RegisterBean registerBean) throws TechnicalErrorException {
 
+		IClientEntity client = new ClientEntity();
+
+		try {
+			client.setLastname(registerBean.getLastname());
+			client.setFirstname(registerBean.getFirstname());
+			// client.setLogin(pLogin);
+			// client.setPassword(pPassword);
+			// client.setEmail(pEmail);
+			// client.setTelephone(pTelephone);
+
+			this.getClientDAO().insert(client);
+		} catch (ExceptionDao e) {
+			throw new TechnicalErrorException(e);
+		}
 		return client;
 	}
 }

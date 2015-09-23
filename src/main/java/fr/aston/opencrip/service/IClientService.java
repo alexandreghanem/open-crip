@@ -4,6 +4,7 @@ import java.util.Set;
 
 import fr.aston.opencrip.entity.IClientEntity;
 import fr.aston.opencrip.service.ex.TechnicalErrorException;
+import fr.aston.opencrip.web.bean.RegisterBean;
 
 /**
  * Gestion de l'utilisateur.
@@ -32,7 +33,6 @@ public interface IClientService extends IService {
 	 * @throws TechnicalErrorException
 	 *             si un probleme survient
 	 */
-	public abstract Set<IClientEntity> register(String pNom, String pPrenom, String pLogin, String pPassword,
-			String pEmail, String pTelephone) throws TechnicalErrorException;
+	public abstract IClientEntity register(RegisterBean registerBean) throws TechnicalErrorException;
 
 }
