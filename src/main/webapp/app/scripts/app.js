@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('projectsApp', [
     'ngCookies',
     'ngRoute',
@@ -16,6 +16,8 @@ angular
     'ngGeolocation',
     'ngMap'
   ])
+  
+app
     .factory('$geolocation', ['$rootScope', '$window', '$q', function($rootScope, $window, $q) {
     
         function supported() {
@@ -90,7 +92,9 @@ angular
         };
     
         return retVal;
-    }])
+}]);
+
+app
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

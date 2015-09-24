@@ -2,10 +2,14 @@ package fr.aston.opencrip.dao;
 
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import fr.aston.opencrip.dao.ex.ExceptionDao;
 import fr.aston.opencrip.dao.util.AbstractJdbcMapper;
 import fr.aston.opencrip.dao.util.ProductJdbcMapper;
 import fr.aston.opencrip.entity.IProductEntity;
@@ -63,5 +67,50 @@ public class ProductDAO extends AbstractDAO<IProductEntity>implements
     @Override
     protected AbstractJdbcMapper<IProductEntity> getMapper() {
         return new ProductJdbcMapper();
+    }
+
+    @Override
+    public Set<IProductEntity> selectCriteria(
+        String aSearchInput, Integer aLimit, String pOrderBy)
+            throws ExceptionDao {
+        Set<IProductEntity> result = new HashSet<>();
+
+        try {
+            // Recherche dans la table produit
+            StringBuffer request = new StringBuffer();
+            request.append("select ");
+            request.append(this.getPkName() + ",");
+            request.append(String.join(",", this.getAllColumnNames()));
+            request.append(" from ");
+            request.append(this.getTableName());
+            request.append(" where reference_produit LIKE ?");
+
+            List<Object> gaps = new ArrayList<>();
+            gaps.add("%" + aSearchInput + "%");
+
+            if (aLimit != null) {
+                request.append(" limit 0,?");
+                gaps.add(aLimit.intValue());
+            }
+
+            if (pOrderBy != null) {
+                request.append(" order by ");
+                request.append(pOrderBy);
+            }
+
+            request.append(';');
+
+            if (this.LOG.isDebugEnabled()) {
+                this.LOG.debug("Requete: " + request.toString());
+            }
+
+            result = this.getJdbcTemplate().query(request.toString(), gaps
+                .toArray(new Object[gaps.size()]),
+                (ResultSetExtractor<Set<IProductEntity>>) this.getMapper());
+        } catch (Throwable e) {
+            throw new ExceptionDao(e);
+        }
+
+        return result;
     }
 }

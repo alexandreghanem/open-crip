@@ -2,16 +2,19 @@
 
 /**
  * @ngdoc function
- * @name projectsApp.controller:AboutCtrl
+ * @name projectsApp.controller:SearchCtrl
  * @description
- * # AboutCtrl
+ * # SearchCtrl
  * Controller of the projectsApp
  */
-angular.module('projectsApp')
-  .controller('SearchCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+app
+  .controller('SearchCtrl', function ($scope, searchService, $location) {
+      $scope.save = function (form, bean) {
+          if (form.$valid) {
+              searchService.addBean(bean).then(function (data) {
+                  $scope.results = data;
+              });
+              $location.path('/search');
+          }
+      };      
   });
