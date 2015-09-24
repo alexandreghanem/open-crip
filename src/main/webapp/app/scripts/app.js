@@ -9,14 +9,14 @@
  * Main module of the application.
  */
 var app = angular
-  .module('projectsApp', [
-    'ngCookies',
-    'ngRoute',
-    'ngSanitize',
-    'ngGeolocation',
-    'ngMap'
-  ])
-  
+    .module('projectsApp', [
+        'ngCookies',
+        'ngRoute',
+        'ngSanitize',
+        'ngGeolocation',
+        'ngMap'
+    ]);
+
 app
     .factory('$geolocation', ['$rootScope', '$window', '$q', function($rootScope, $window, $q) {
     
@@ -93,7 +93,7 @@ app
     
         return retVal;
     }]);
-
+    
 app
   .config(function ($routeProvider) {
     $routeProvider
@@ -121,12 +121,6 @@ app
         templateUrl: 'app/views/basket.html',
         controller: 'BasketCtrl',
         controllerAs: 'basket'
-      })
-      .when('/searchmap/:dashboardId', {
-        templateUrl: 'app/views/search_map.html',
-        controller: 'SearchMapCtrl',
-        controllerAs: 'searchmap',
-        reloadOnSearch: false
       })
       .otherwise({
         redirectTo: '/'

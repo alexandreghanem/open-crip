@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the projectsApp
  */
-angular.module('projectsApp')
+app
   .controller('RegisterCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
