@@ -87,7 +87,6 @@ IAuthentificationService {
 		if (!authentificationBean.getPassword().equals(resultat.getPassword())) {
 			throw new BadPasswordException();
 		}
-
 		return resultat;
 	}
 }
