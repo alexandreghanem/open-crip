@@ -201,7 +201,7 @@ public class SearchService extends AbstractService implements ISearchService {
 
                 Set<IUserEntity> users;
                 try {
-                    users = this.getUserDAO().selectAll("id_address=" + address
+                    users = this.getUserDAO().selectAll("id_adresse=" + address
                         .getId(), null);
                 } catch (ExceptionDao e) {
                     throw new TechnicalErrorException(e);

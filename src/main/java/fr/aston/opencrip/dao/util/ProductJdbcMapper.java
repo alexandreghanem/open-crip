@@ -24,7 +24,7 @@ public class ProductJdbcMapper extends AbstractJdbcMapper<IProductEntity> {
         IProductEntity result = new ProductEntity();
         result.setId(Integer.valueOf(rs.getInt("id")));
         result.setReference(rs.getString("reference_produit"));
-        result.setPrice(Double.valueOf(rs.getDouble("prix_total")));
+        result.setPrice(Double.valueOf(rs.getDouble("prix_unitaire")));
         result.setSupplierId(Integer.valueOf(rs.getInt("id_fournisseur")));
         return result;
     }

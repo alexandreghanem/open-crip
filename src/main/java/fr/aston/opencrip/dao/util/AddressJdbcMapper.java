@@ -23,7 +23,7 @@ public class AddressJdbcMapper extends AbstractJdbcMapper<IAddressEntity> {
     public IAddressEntity mapRow(ResultSet rs, int id) throws SQLException {
         IAddressEntity result = new AddressEntity();
         result.setId(Integer.valueOf(rs.getInt("id")));
-        result.setNumber(rs.getString("number"));
+        result.setNumber(rs.getString("numero"));
         result.setAddress1(rs.getString("adresse_1"));
         result.setAddress2(rs.getString("adresse_2"));
         result.setZipCode(rs.getString("code_postal"));

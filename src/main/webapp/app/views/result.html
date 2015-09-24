@@ -1,14 +1,10 @@
 <div ng-controller="ResultCtrl">
-<div ng-if="!searchResult">
-    <h4>Propositions</h4>
-    <ul ng-repeat="result in defaultResults">
-        <li>{{ result.id }}</li>
-    </ul>
-</div>
 <div ng-if="searchResult">
     <h4>Résultats de recherche</h4>
     <ul ng-repeat="result in results">
-        <li>{{ result }}</li>
+        <li>{{ result.id }}</li>
+        <li>{{ result.reference }}</li>
+        <li>{{ result.price }}</li>
     </ul>
 </div>
 </div>

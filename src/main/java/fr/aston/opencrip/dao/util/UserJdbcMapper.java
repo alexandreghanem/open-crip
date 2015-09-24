@@ -27,7 +27,7 @@ public class UserJdbcMapper extends AbstractJdbcMapper<IUserEntity> {
         result.setPassword(rs.getString("mot_de_passe"));
         result.setEmail(rs.getString("email"));
         result.setTelephone(rs.getString("telephone"));
-        result.setLastConnection(rs.getTimestamp("date_derniere_connection"));
+        result.setLastConnection(rs.getTimestamp("date_derniere_connexion"));
         result.setRegistrationDate(rs.getDate("date_inscription"));
         result.setAddressId(Integer.valueOf(rs.getInt("id_adresse")));
         result.setClientId(Integer.valueOf(rs.getInt("id_client")));

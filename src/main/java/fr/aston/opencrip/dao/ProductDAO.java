@@ -102,6 +102,8 @@ public class ProductDAO extends AbstractDAO<IProductEntity>implements
 
             if (this.LOG.isDebugEnabled()) {
                 this.LOG.debug("Requete: " + request.toString());
+                Object[] array = gaps.toArray(new Object[gaps.size()]);
+                this.LOG.debug(array);
             }
 
             result = this.getJdbcTemplate().query(request.toString(), gaps
