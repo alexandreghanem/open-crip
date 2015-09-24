@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 public class AuthentificationBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
