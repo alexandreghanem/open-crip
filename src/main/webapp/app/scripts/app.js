@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('projectsApp', [
     'ngCookies',
     'ngRoute',
@@ -90,7 +90,9 @@ angular
         };
     
         return retVal;
-    }])
+    }]);
+
+app
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -1,1 +1,15 @@
-<p>Vue pour la recherche</p>
+<h4>Vue pour la recherche</h4>
+<form name="searchForm" ng-submit="save(searchForm, searchBean)" novalidate class="form-horizontal">
+
+    <div class="form-group"> 
+    <label class="col-sm-2 control-label">Recherche</label>
+    <div class="col-sm-4">
+        <input name="searchInput" type="text" class="form-control" ng-model="searchBean.searchInput"/>
+    </div>
+    </div>
+    <div class="form-group col-sm-3 control-label">
+        <input type="submit" value="Rechercher" class="btn btn-primary"/>
+    </div>
+</form>
+
+<ng-include src="'app/views/result.html'"></ng-include>
