@@ -2,6 +2,8 @@ package fr.aston.opencrip.entity;
 
 import java.io.Serializable;
 
+import org.json.JSONObject;
+
 /**
  * Le bean qui represente une entité. <br>
  */
@@ -71,5 +73,12 @@ public abstract class AbstractEntity implements Serializable, IEntity {
         sb.append(this.getId());
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public JSONObject toJSONObject() {
+        JSONObject obj = new JSONObject();
+        obj.put("id", this.getId());
+        return obj;
     }
 }
