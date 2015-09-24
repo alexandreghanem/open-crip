@@ -96,7 +96,7 @@ angular
       .when('/', {
         templateUrl: 'app/views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
       })
       .when('/register', {
         templateUrl: 'app/views/register.html',
@@ -118,10 +118,11 @@ angular
         controller: 'BasketCtrl',
         controllerAs: 'basket'
       })
-      .when('/searchmap', {
+      .when('/searchmap/:dashboardId', {
         templateUrl: 'app/views/search_map.html',
         controller: 'SearchMapCtrl',
-        controllerAs: 'searchmap'
+        controllerAs: 'searchmap',
+        reloadOnSearch: false
       })
       .otherwise({
         redirectTo: '/'
