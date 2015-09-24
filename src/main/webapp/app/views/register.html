@@ -1,70 +1,71 @@
-<form name="myForm" ng-submit="foo()" novalidate class="form-horizontal">
+<form name="registerForm" ng-submit="save(registerForm, registerBean)" novalidate class="form-horizontal">
        
     <div class="form-group"> 
         <label class="col-sm-3 control-label">Prénom : </label>
          <div class="col-sm-4">
-            <input name="prenom" type="text" class="form-control" required/>
+            <input name="firstname" type="text" class="form-control" ng-model="registerBean.firstname"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Nom : </label>
          <div class="col-sm-4">
-            <input  name="nom" type="text" class="form-control col-md-3" required/>
+            <input  name="lastname" type="text" class="form-control col-md-3" ng-model="registerBean.lastname"/>
         </div>
    </div>
    
     <div class="form-group">
         <label class="col-sm-3 control-label">Numero : </label>
          <div class="col-sm-4">
-            <input name="numero" type="number" class="form-control col-md-3" required/>
+            <input name="numero" type="number" class="form-control col-md-3" ng-model="registerBean.number"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Rue : </label>
          <div class="col-sm-4">
-            <input name="rue" type="text" class="form-control" required/>
+            <input name="rue" type="text" class="form-control" ng-model="registerBean.rue"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Code Postal : </label>
          <div class="col-sm-4">
-            <input name="codePostal" type="number" class="form-control" required/>
+            <input name="codePostal" type="number" class="form-control" ng-model="registerBean.codePostal"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Ville : </label>
          <div class="col-sm-4">
-            <input name="ville" type="text" class="form-control" required/>
+            <input name="ville" type="text" class="form-control" ng-model="registerBean.ville"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Password : </label>
          <div class="col-sm-4">
-            <input name="password" type="password" class="form-control" required/>
+            <input name="password" type="password" class="form-control" ng-model="registerBean.password"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">Confirm Password : </label>
          <div class="col-sm-4">
-            <input name="confirmPassword" type="password" class="form-control" required/>
+            <input name="confirmPassword" type="password" class="form-control" ng-model="registerBean.confirmPassword"/>
         </div>
     </div>
     
     <div class="form-group">
         <label class="col-sm-3 control-label">E-mail : </label>
          <div class="col-sm-4">
-            <input name="mail" type="email" class="form-control" required/>
+            <input name="mail" type="email" class="form-control" ng-model="registerBean.mail"/>
         </div>
     </div>
     
     <div class="form-group">
         <input type="submit" value="Envoyer" class="btn btn-primary  col-sm-4 col-sm-offset-3 ocrip-green"/>
     </div>
-
+    
+   </div>
 </form>
