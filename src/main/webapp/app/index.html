@@ -5,13 +5,14 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
+    <link rel="icon" type="image/png" href="app/favicon.png" />
+
     <link rel="stylesheet" href="app/lib/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
+
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="app/styles/reset_bootstrap.css">
+    <link rel="stylesheet" href="app/styles/animation.css">
     <link rel="stylesheet" href="app/styles/main.css">
     <!-- endbuild -->
   </head>
@@ -22,9 +23,9 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-          <div class="navbar-header">
+          <div class="navbar-header col-md-3">
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -33,7 +34,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">Projet CRIP</a>
+            <a class="" href="#/"><img src="app/images/logo-medium.png" alt="logo-medium" height="45px"></a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -57,7 +58,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span>Projet Crip</p>
+        <p>I&nbsp;<span class="glyphicon glyphicon-heart"></span>&nbsp;Open CRIP</p>
       </div>
     </div>
 

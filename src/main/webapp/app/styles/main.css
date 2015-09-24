@@ -1,3 +1,7 @@
+.ocrip-green {
+	background-color: #a1cc3a;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,6 +23,7 @@ body {
 
 /* Custom page header */
 .header {
+  height: 50px;
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
