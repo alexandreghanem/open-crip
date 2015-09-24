@@ -82,26 +82,32 @@ public class SearchServiceController {
         @RequestBody String input) {
         ResponseEntity<String> result = null;
 
-        JSONObject p = new JSONObject(input);
-        SearchBean searchBean = new SearchBean();
-        searchBean.setSearchInput(p.getString("searchInput"));
+        if ((input == null) || (input.trim().length() == 0)) {
+            result = new ResponseEntity<>(new JSONException(
+                "Pas des données postées").toString(), HttpStatus.BAD_REQUEST);
+        } else {
 
-        try {
-            Set<IProductEntity> products = this.searchService.search(
-                searchBean);
-            JSONArray json = new JSONArray();
-            Iterator<IProductEntity> iterator = products.iterator();
-            while (iterator.hasNext()) {
-                IProductEntity product = iterator.next();
-                if (product == null) {
-                    continue;
+            JSONObject p = new JSONObject(input);
+            SearchBean searchBean = new SearchBean();
+            searchBean.setSearchInput(p.getString("searchInput"));
+
+            try {
+                Set<IProductEntity> products = this.searchService.search(
+                    searchBean);
+                JSONArray json = new JSONArray();
+                Iterator<IProductEntity> iterator = products.iterator();
+                while (iterator.hasNext()) {
+                    IProductEntity product = iterator.next();
+                    if (product == null) {
+                        continue;
+                    }
+                    json.put(product.toJSONObject());
                 }
-                json.put(product.toJSONObject());
+                result = new ResponseEntity<>(json.toString(), HttpStatus.OK);
+            } catch (TechnicalErrorException e) {
+                result = new ResponseEntity<>(new JSONException(e.getMessage())
+                    .toString(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
-            result = new ResponseEntity<>(json.toString(), HttpStatus.OK);
-        } catch (TechnicalErrorException e) {
-            result = new ResponseEntity<>(new JSONException(e.getMessage())
-                .toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return result;

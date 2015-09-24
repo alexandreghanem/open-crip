@@ -1,7 +1,14 @@
-<h4>Liste pour la recherche</h4>
-
 <div ng-controller="ResultCtrl">
-    <ul ng-repeat="result in results">
-        <li>{{ product }}</li>
+<div ng-if="!searchResult">
+    <h4>Propositions</h4>
+    <ul ng-repeat="result in defaultResults">
+        <li>{{ result.id }}</li>
     </ul>
+</div>
+<div ng-if="searchResult">
+    <h4>Résultats de recherche</h4>
+    <ul ng-repeat="result in results">
+        <li>{{ result }}</li>
+    </ul>
+</div>
 </div>
