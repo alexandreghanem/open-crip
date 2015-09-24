@@ -6,6 +6,7 @@ app
             getProducts: function () {
                 return $http.put('/open-crip/rest/search/all').then(
                     function (response) { //success
+                        console.log(response.data);
                         return response.data;
                     },
                     function (response) {}, //error
