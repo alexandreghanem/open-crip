@@ -1,0 +1,85 @@
+.btn-primary {
+    background-color: #a1cc3a;
+    border-color: #a1cc3a;
+}
+
+.btn-primary:hover {
+    background-color: #646262;
+    border-color: #646262;
+}
+
+.jumbotron {
+    background-color: #ffffff;
+}
+
+.navbar-default {
+  background-color: #ffffff;
+}
+
+.navbar-default .navbar-brand {
+  color: #646262;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #a1cc3a;
+}
+
+.navbar-default .navbar-text {
+  color: #646262;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #646262;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #a1cc3a;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #a1cc3a;
+  background-color: #ffffff;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #a1cc3a;
+  background-color: #ffffff;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #ffffff;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #646262;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #646262;
+}
+
+.navbar-default .navbar-link {
+  color: #646262;
+}
+
+.navbar-default .navbar-link:hover {
+  color: #a1cc3a;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #646262;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #a1cc3a;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #a1cc3a;
+    background-color: #ffffff;
+  }
+}
