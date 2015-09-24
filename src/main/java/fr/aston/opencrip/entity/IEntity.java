@@ -1,5 +1,7 @@
 package fr.aston.opencrip.entity;
 
+import org.json.JSONObject;
+
 public interface IEntity {
 
     /**
@@ -17,4 +19,5 @@ public interface IEntity {
      */
     public abstract void setId(Integer pId);
 
+    public abstract JSONObject toJSONObject();
 }
