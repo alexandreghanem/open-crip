@@ -16,6 +16,8 @@ var app = angular
     'ngGeolocation',
     'ngMap'
   ])
+  
+app
     .factory('$geolocation', ['$rootScope', '$window', '$q', function($rootScope, $window, $q) {
     
         function supported() {
