@@ -1,5 +1,7 @@
 package fr.aston.opencrip.entity;
 
+import org.json.JSONObject;
+
 /**
  * Le bean qui represente un produit. <br>
  */
@@ -60,5 +62,13 @@ public class ProductEntity extends AbstractEntity implements IProductEntity {
         sb.append(this.getPrice());
         sb.append("}");
         return sb.toString();
+    }
+
+    @Override
+    public JSONObject toJSONObject() {
+        JSONObject obj = super.toJSONObject();
+        obj.put("reference", this.getReference());
+        obj.put("price", this.getPrice());
+        return obj;
     }
 }

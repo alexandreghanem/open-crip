@@ -8,12 +8,14 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('projectsApp', [
     'ngCookies',
     'ngRoute',
     'ngSanitize'
-  ])
+  ]);
+
+app
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
