@@ -8,10 +8,11 @@
  * Controller of the projectsApp
  */
 angular.module('projectsApp')
-  .controller('LoginCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LoginCtrl', function ($scope, authentificationService, $location) {
+	  $scope.save = function (form, bean) {
+	        if (form.$valid) {
+	        	authentificationService.addBean(bean);
+	            $location.path('/login');
+	        }
+	    };
   });

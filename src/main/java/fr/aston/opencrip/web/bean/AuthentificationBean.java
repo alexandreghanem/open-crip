@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 public class AuthentificationBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,8 +28,8 @@ public class AuthentificationBean implements Serializable {
 	public AuthentificationBean(HttpServletRequest request) {
 		super();
 		if (request != null) {
-			this.setLogin(request.getParameter("id"));
-			this.setPassword(request.getParameter("pwd"));
+			this.setLogin(request.getParameter("identifiant"));
+			this.setPassword(request.getParameter("mot_de_passe"));
 		}
 	}
 
