@@ -12,7 +12,9 @@ cd open-crip/
 git checkout develop
 git pull origin develop
 NB : Vérifier toujours que vous êtes sur la bonne branche : ici c'est develop
+```
 HP6400@GHANEM-LAPTOP MINGW32 ~/open-crip (develop)
+```
 
 3.	Aller sur eclipse et faire un import existing maven project
 
