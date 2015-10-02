@@ -1,8 +1,8 @@
 # .gitignore
-# eclipse
-.project
+
+
 
 # maven
 target
-# classpath
-.classpath
+
+
